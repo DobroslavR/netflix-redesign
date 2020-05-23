@@ -1,11 +1,11 @@
-import { Component, ChangeDetectionStrategy, Input, HostBinding, HostListener, Renderer2, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, HostBinding, HostListener, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { convertToBoolProperty } from '../../helpers/convertToBool';
 
 export type NxButtonSize = 'small' | 'medium' | 'large';
 
 export type NxButtonShape = 'rectangle' | 'round' | 'semi-round';
 
-export type NxButtonColor = 'primary' | 'secondary';
+export type NxButtonColor = 'primary' | 'secondary' | 'black';
 
 @Component({
     selector: 'button[nxButton],a[nxButton],input[type="button"][nxButton],input[type="submit"][nxButton]',
@@ -13,7 +13,7 @@ export type NxButtonColor = 'primary' | 'secondary';
     styleUrls: ['./button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent {
+export class ButtonComponent implements OnInit {
     /**
      * Button size, available sizes:
      * `small`, `medium`, `large`
@@ -29,6 +29,19 @@ export class ButtonComponent {
      * Button shapes: `primary`, `secondary`
      */
     @Input() color: NxButtonColor = 'primary';
+
+    /**
+     * If set, element will fill its container
+     */
+    @Input()
+    @HostBinding('class.btn--full-width')
+    get fullWidth(): boolean {
+        return this._fullWidth;
+    }
+    set fullWidth(value: boolean) {
+        this._fullWidth = convertToBoolProperty(value);
+    }
+    private _fullWidth = false;
 
     /**
      * Disables the button
@@ -55,6 +68,11 @@ export class ButtonComponent {
     @HostBinding('class.btn--color-secondary')
     get secondary() {
         return this.color === 'secondary';
+    }
+
+    @HostBinding('class.btn--color-black')
+    get black() {
+        return this.color === 'black';
     }
 
     /* Sizes */
@@ -110,4 +128,8 @@ export class ButtonComponent {
     }
 
     constructor(protected renderer: Renderer2, protected hostElement: ElementRef<HTMLElement>) {}
+
+    ngOnInit() {
+        this.renderer.addClass(this.hostElement.nativeElement, 'btn');
+    }
 }

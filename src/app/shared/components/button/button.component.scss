@@ -1,0 +1,60 @@
+@import '~src/styles/colors';
+
+$colors: (
+    'primary': var(--primary-color),
+    'secondary': var(--secondary-color),
+    'black': var(--black-color),
+);
+
+$shapes: (
+    'rectangle': 0,
+    'round': 2.5rem,
+    'semi-round': 1rem,
+);
+
+$sizes: (
+    'small': 0.4rem 2rem,
+    'medium': 0.75rem 2.75rem,
+    'large': 1rem 4rem,
+);
+
+::ng-deep {
+    .btn {
+        /* BASE SETTINGS */
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+        transition: box-shadow 0.1s ease-in-out;
+        will-change: box-shadow;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        /* FULLWIDTH MODIFICATOR */
+        &--full-width {
+            width: 100%;
+        }
+        /* COLOR MODIFICATORS */
+        @each $name, $value in $colors {
+            &--color-#{$name} {
+                background-color: $value;
+                /* TODO HOVER */
+            }
+        }
+        /* SHAPE MODIFICATORS */
+        @each $name, $value in $shapes {
+            &--shape-#{$name} {
+                border-radius: $value;
+            }
+        }
+        /* SIZE MODIFICATORS */
+        @each $name, $value in $sizes {
+            &--size-#{$name} {
+                padding: $value;
+            }
+        }
+    }
+}
