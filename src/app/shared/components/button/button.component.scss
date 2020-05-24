@@ -18,9 +18,8 @@ $sizes: (
     'large': 1rem 4rem,
 );
 
-::ng-deep {
-    .btn {
-        /* BASE SETTINGS */
+@mixin nx-button-theme() {
+    [nxButton] {
         font-size: 1.4rem;
         font-weight: 700;
         color: #fff;
@@ -33,26 +32,30 @@ $sizes: (
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        /* FULLWIDTH MODIFICATOR */
-        &--full-width {
+
+        &[disabled] {
+            cursor: not-allowed;
+        }
+
+        &.full-width {
             width: 100%;
         }
-        /* COLOR MODIFICATORS */
+
         @each $name, $value in $colors {
-            &--color-#{$name} {
+            &.color-#{$name} {
                 background-color: $value;
                 /* TODO HOVER */
             }
         }
-        /* SHAPE MODIFICATORS */
+
         @each $name, $value in $shapes {
-            &--shape-#{$name} {
+            &.shape-#{$name} {
                 border-radius: $value;
             }
         }
-        /* SIZE MODIFICATORS */
+
         @each $name, $value in $sizes {
-            &--size-#{$name} {
+            &.size-#{$name} {
                 padding: $value;
             }
         }

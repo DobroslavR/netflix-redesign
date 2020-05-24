@@ -13,7 +13,7 @@ export type NxButtonColor = 'primary' | 'secondary' | 'black';
     styleUrls: ['./button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
     /**
      * Button size, available sizes:
      * `small`, `medium`, `large`
@@ -34,7 +34,7 @@ export class ButtonComponent implements OnInit {
      * If set, element will fill its container
      */
     @Input()
-    @HostBinding('class.btn--full-width')
+    @HostBinding('class.full-width')
     get fullWidth(): boolean {
         return this._fullWidth;
     }
@@ -48,7 +48,7 @@ export class ButtonComponent implements OnInit {
      */
     @Input()
     @HostBinding('attr.aria-disabled')
-    @HostBinding('class.btn--disabled')
+    @HostBinding('class.disabled')
     get disabled(): boolean {
         return this._disabled;
     }
@@ -60,51 +60,51 @@ export class ButtonComponent implements OnInit {
 
     /* Colors */
 
-    @HostBinding('class.btn--color-primary')
+    @HostBinding('class.color-primary')
     get primary() {
         return this.color === 'primary';
     }
 
-    @HostBinding('class.btn--color-secondary')
+    @HostBinding('class.color-secondary')
     get secondary() {
         return this.color === 'secondary';
     }
 
-    @HostBinding('class.btn--color-black')
+    @HostBinding('class.color-black')
     get black() {
         return this.color === 'black';
     }
 
     /* Sizes */
 
-    @HostBinding('class.btn--size-small')
+    @HostBinding('class.size-small')
     get small() {
         return this.size === 'small';
     }
 
-    @HostBinding('class.btn--size-medium')
+    @HostBinding('class.size-medium')
     get medium() {
         return this.size === 'medium';
     }
 
-    @HostBinding('class.btn--size-large')
+    @HostBinding('class.size-large')
     get large() {
         return this.size === 'large';
     }
 
     /* Shapes */
 
-    @HostBinding('class.btn--shape-rectangle')
+    @HostBinding('class.shape-rectangle')
     get rectangle() {
         return this.shape === 'rectangle';
     }
 
-    @HostBinding('class.btn--shape-round')
+    @HostBinding('class.shape-round')
     get round() {
         return this.shape === 'round';
     }
 
-    @HostBinding('class.btn--shape-semi-round')
+    @HostBinding('class.shape-semi-round')
     get semiRound() {
         return this.shape === 'semi-round';
     }
@@ -128,8 +128,4 @@ export class ButtonComponent implements OnInit {
     }
 
     constructor(protected renderer: Renderer2, protected hostElement: ElementRef<HTMLElement>) {}
-
-    ngOnInit() {
-        this.renderer.addClass(this.hostElement.nativeElement, 'btn');
-    }
 }
