@@ -1,10 +1,13 @@
-<button shape="round" color="primary" size="small" nxButton>
+<!-- <button shape="round" color="primary" size="small" nxButton iconSlot="right">
     Watch
+    <fa-icon [icon]="playIcon"></fa-icon>
 </button>
 <button shape="round" color="primary" size="medium" nxButton>
+    <fa-icon [icon]="playIcon"></fa-icon>
     Watch
 </button>
 <button shape="round" color="primary" size="large" nxButton>
+    <fa-icon [icon]="playIcon"></fa-icon>
     Watch
 </button>
 <button shape="round" color="black" size="small" nxButton>
@@ -15,4 +18,13 @@
 </button>
 <button shape="round" color="black" size="large" nxButton>
     Add to list
-</button>
+</button> -->
+<!--
+<nx-card
+    *ngFor="let movie of popularMovies | async"
+    [title]="movie.title"
+    [popularity]="movie.popularity"
+    [img]="movie.poster_path"
+></nx-card> -->
+
+<nx-genre-list></nx-genre-list>

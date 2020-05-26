@@ -2,3 +2,12 @@
 @import './colors.scss';
 @import './typography.scss';
 @import './fonts.scss';
+@import './theme.scss';
+
+@include nx-install-theme();
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+}

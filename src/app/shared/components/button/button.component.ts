@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, HostBinding, HostListener, Renderer2, ElementRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, HostBinding, HostListener, Renderer2, ElementRef } from '@angular/core';
 import { convertToBoolProperty } from '../../helpers/convertToBool';
 
 export type NxButtonSize = 'small' | 'medium' | 'large';
@@ -7,15 +7,18 @@ export type NxButtonShape = 'rectangle' | 'round' | 'semi-round';
 
 export type NxButtonColor = 'primary' | 'secondary' | 'black';
 
+export type NxButtonIconSlot = 'left' | 'right';
+
+/* TODO ICON SLOT */
 @Component({
     selector: 'button[nxButton],a[nxButton],input[type="button"][nxButton],input[type="submit"][nxButton]',
     template: '<ng-content></ng-content>',
     styleUrls: ['./button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
     /**
-     * Button size, available sizes:
+     * Button sizes, available sizes:
      * `small`, `medium`, `large`
      */
     @Input() size: NxButtonSize = 'medium';
@@ -26,15 +29,20 @@ export class ButtonComponent implements OnInit {
     @Input() shape: NxButtonShape = 'rectangle';
 
     /**
-     * Button shapes: `primary`, `secondary`
+     * Button colors: `primary`, `secondary`
      */
     @Input() color: NxButtonColor = 'primary';
+
+    /**
+     * Icon slots: `left`, `right`
+     */
+    @Input() iconSlot: NxButtonIconSlot = 'left';
 
     /**
      * If set, element will fill its container
      */
     @Input()
-    @HostBinding('class.btn--full-width')
+    @HostBinding('class.full-width')
     get fullWidth(): boolean {
         return this._fullWidth;
     }
@@ -43,12 +51,24 @@ export class ButtonComponent implements OnInit {
     }
     private _fullWidth = false;
 
+    /* Icon slots */
+
+    @HostBinding('class.icon-left')
+    get iconLeft() {
+        return this.iconSlot === 'left';
+    }
+
+    @HostBinding('class.icon-right')
+    get iconRight() {
+        return this.iconSlot === 'right';
+    }
+
     /**
      * Disables the button
      */
     @Input()
     @HostBinding('attr.aria-disabled')
-    @HostBinding('class.btn--disabled')
+    @HostBinding('class.disabled')
     get disabled(): boolean {
         return this._disabled;
     }
@@ -60,51 +80,51 @@ export class ButtonComponent implements OnInit {
 
     /* Colors */
 
-    @HostBinding('class.btn--color-primary')
+    @HostBinding('class.color-primary')
     get primary() {
         return this.color === 'primary';
     }
 
-    @HostBinding('class.btn--color-secondary')
+    @HostBinding('class.color-secondary')
     get secondary() {
         return this.color === 'secondary';
     }
 
-    @HostBinding('class.btn--color-black')
+    @HostBinding('class.color-black')
     get black() {
         return this.color === 'black';
     }
 
     /* Sizes */
 
-    @HostBinding('class.btn--size-small')
+    @HostBinding('class.size-small')
     get small() {
         return this.size === 'small';
     }
 
-    @HostBinding('class.btn--size-medium')
+    @HostBinding('class.size-medium')
     get medium() {
         return this.size === 'medium';
     }
 
-    @HostBinding('class.btn--size-large')
+    @HostBinding('class.size-large')
     get large() {
         return this.size === 'large';
     }
 
     /* Shapes */
 
-    @HostBinding('class.btn--shape-rectangle')
+    @HostBinding('class.shape-rectangle')
     get rectangle() {
         return this.shape === 'rectangle';
     }
 
-    @HostBinding('class.btn--shape-round')
+    @HostBinding('class.shape-round')
     get round() {
         return this.shape === 'round';
     }
 
-    @HostBinding('class.btn--shape-semi-round')
+    @HostBinding('class.shape-semi-round')
     get semiRound() {
         return this.shape === 'semi-round';
     }
@@ -128,8 +148,4 @@ export class ButtonComponent implements OnInit {
     }
 
     constructor(protected renderer: Renderer2, protected hostElement: ElementRef<HTMLElement>) {}
-
-    ngOnInit() {
-        this.renderer.addClass(this.hostElement.nativeElement, 'btn');
-    }
 }

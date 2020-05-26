@@ -1,0 +1,26 @@
+@import '~src/styles/colors';
+
+:host {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.img {
+    max-height: 30rem;
+    width: auto;
+    border-radius: 1rem;
+}
+
+.heading {
+    font-size: 1.8rem;
+    color: var(--card-heading-color);
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.release-year {
+    font-size: 1.6rem;
+    color: var(--card-release-year-color);
+    font-weight: 700;
+}
