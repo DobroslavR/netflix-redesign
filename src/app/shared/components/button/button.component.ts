@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, HostBinding, HostListener, Renderer2, ElementRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, HostBinding, HostListener, Renderer2, ElementRef } from '@angular/core';
 import { convertToBoolProperty } from '../../helpers/convertToBool';
 
 export type NxButtonSize = 'small' | 'medium' | 'large';
@@ -7,6 +7,9 @@ export type NxButtonShape = 'rectangle' | 'round' | 'semi-round';
 
 export type NxButtonColor = 'primary' | 'secondary' | 'black';
 
+export type NxButtonIconSlot = 'left' | 'right';
+
+/* TODO ICON SLOT */
 @Component({
     selector: 'button[nxButton],a[nxButton],input[type="button"][nxButton],input[type="submit"][nxButton]',
     template: '<ng-content></ng-content>',
@@ -15,7 +18,7 @@ export type NxButtonColor = 'primary' | 'secondary' | 'black';
 })
 export class ButtonComponent {
     /**
-     * Button size, available sizes:
+     * Button sizes, available sizes:
      * `small`, `medium`, `large`
      */
     @Input() size: NxButtonSize = 'medium';
@@ -26,9 +29,14 @@ export class ButtonComponent {
     @Input() shape: NxButtonShape = 'rectangle';
 
     /**
-     * Button shapes: `primary`, `secondary`
+     * Button colors: `primary`, `secondary`
      */
     @Input() color: NxButtonColor = 'primary';
+
+    /**
+     * Icon slots: `left`, `right`
+     */
+    @Input() iconSlot: NxButtonIconSlot = 'left';
 
     /**
      * If set, element will fill its container
@@ -42,6 +50,18 @@ export class ButtonComponent {
         this._fullWidth = convertToBoolProperty(value);
     }
     private _fullWidth = false;
+
+    /* Icon slots */
+
+    @HostBinding('class.icon-left')
+    get iconLeft() {
+        return this.iconSlot === 'left';
+    }
+
+    @HostBinding('class.icon-right')
+    get iconRight() {
+        return this.iconSlot === 'right';
+    }
 
     /**
      * Disables the button

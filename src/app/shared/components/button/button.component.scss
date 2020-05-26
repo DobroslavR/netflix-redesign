@@ -33,6 +33,14 @@ $sizes: (
         align-items: center;
         justify-content: center;
 
+        &.icon-left fa-icon {
+            margin-right: 1rem;
+        }
+
+        &.icon-right fa-icon {
+            margin-left: 1rem;
+        }
+
         &[disabled] {
             cursor: not-allowed;
         }

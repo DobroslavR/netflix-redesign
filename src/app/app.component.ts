@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { MovieService } from './shared/services/movie.service';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
-
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 export interface Result {
     popularity: number;
     vote_count: number;
@@ -35,6 +35,8 @@ export interface PopularMovies {
 export class AppComponent {
     title = 'netflix';
     constructor(private movie: MovieService) {}
+
+    public playIcon = faPlay;
 
     public popularMovies: Observable<Result[]> = this.movie.getPopularMovies().pipe(map((x) => x.results));
 }
