@@ -11,6 +11,7 @@ export type NxButtonIconSlot = 'left' | 'right';
 
 /* TODO ICON SLOT */
 @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'button[nxButton],a[nxButton],input[type="button"][nxButton],input[type="submit"][nxButton]',
     template: '<ng-content></ng-content>',
     styleUrls: ['./button.component.scss'],
@@ -130,7 +131,7 @@ export class ButtonComponent {
     }
 
     /**
-     * @private
+     *
      * Keep this handler to partially support anchor disabling.
      * Unlike button, anchor doesn't have 'disabled' DOM property,
      * so handler will be called anyway. We preventing navigation and bubbling.

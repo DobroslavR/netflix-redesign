@@ -1,4 +1,3 @@
-import { GenreListModule } from './shared/components/genre-list/genre-list.module';
 import { ApiInterceptor } from './@core/interceptors/api.interceptor';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,7 +12,7 @@ import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, GenreListModule, HttpClientModule, AppRoutingModule, SharedModule, TranslocoRootModule],
+    imports: [BrowserModule, HttpClientModule, AppRoutingModule, SharedModule, TranslocoRootModule],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
