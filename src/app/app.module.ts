@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -26,6 +27,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
         AppRoutingModule,
         SharedModule,
         TranslocoRootModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
     providers: [
         {
