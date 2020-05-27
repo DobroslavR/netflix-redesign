@@ -9,10 +9,11 @@ import { AppComponent } from './app.component';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, GenreListModule, HttpClientModule, AppRoutingModule, SharedModule],
+    imports: [BrowserModule, GenreListModule, HttpClientModule, AppRoutingModule, SharedModule, TranslocoRootModule],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
