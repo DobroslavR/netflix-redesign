@@ -5,7 +5,9 @@
         "ng": "ng",
         "start": "ng serve -o",
         "build": "ng build",
+        "build:prod": "ng build --prod",
         "test": "ng test",
+        "test:ci": "ng test --karma-config=karma-ci.conf.js --no-progress",
         "lint": "ng lint",
         "e2e": "ng e2e",
         "compodoc": "npx compodoc -p tsconfig.json"
@@ -13,8 +15,7 @@
     "private": true,
     "husky": {
         "hooks": {
-            "pre-commit": "pretty-quick --staged && ng lint && ng test",
-            "pre-push": "ng build --aot true"
+            "pre-commit": "pretty-quick --staged && ng lint && ng test"
         }
     },
     "dependencies": {
